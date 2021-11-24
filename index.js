@@ -19,7 +19,7 @@ app.get('/', async (req, res) => {
 
 app.get('/branches/autocomplete', async (req, res) => {
     // const create = await pool.query("CREATE TABLE bankinfos");
-    let b=req.query.q.toUpperCase() || '';
+    let b=req.query?.q ? req.query?.q.toUpperCase() : '';
     let l=req.query.limit || 10;
     let o = req.query.offset || 0;
     const info = await pool.query(`SELECT ifsc, bank_id, branch, address, city, district, state FROM branches WHERE branch LIKE '${b}%' ORDER BY ifsc LIMIT ${l} OFFSET ${o}`);
@@ -29,9 +29,9 @@ app.get('/branches/autocomplete', async (req, res) => {
 
 app.get('/branches', async (req, res) => {
     // const create = await pool.query("CREATE TABLE bankinfos");
-    let q=req.query.q.toUpperCase() || '';
-    let l=req.query.limit || 10;
-    let o = req.query.offset || 0;
+    let q=req.query?.q ? req.query?.q.toUpperCase() : '';
+    let l=req.query?.limit || 10;
+    let o = req.query?.offset || 0;
     const info = await pool.query(`SELECT ifsc, bank_id, branch, address, city, district, state FROM branches WHERE (branch || ifsc || bank_id || address || city || district || state ) LIKE '${q}%' ORDER BY ifsc LIMIT ${l} OFFSET ${o}`);
     // console.log(req.query.q);
     res.json(info?.rows);
