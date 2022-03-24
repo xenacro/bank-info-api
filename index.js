@@ -40,3 +40,15 @@ app.get('/branches', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is listening on port: ${PORT}`);
 });
+
+
+/**
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches/autocomplete'
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches/autocomplete?q=ABH'
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches/autocomplete?q=ABH&limit=4'
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches/autocomplete?q=ABH&limit=4&offset=1'
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches'
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches?q=ABH'
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches?q=ABH&limit=4'
+ * curl --location --request GET 'http://try-postgres-sql.herokuapp.com/branches?q=ABH&limit=4&offset=1'
+ */
